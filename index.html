@@ -102,8 +102,6 @@
                         });
                     });
                 });
-
-                // Cleanup function to kill ScrollTriggers
                 return () => {
                     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
                 };
@@ -141,18 +139,18 @@
                                     <div className="top-section_button_container">
                                         {navLinks.map((link, index) => (
                                             <a
-                        href="#"
-                        className={`top-section_button_${link.buttonClass}`}
-                        key={index}
-                        onMouseEnter={() => setIsButtonHovered(true)} // 悬停按钮时
-                        onMouseLeave={() => setIsButtonHovered(false)} // 离开按钮时
-                        style={{
-                            backgroundImage: (hoveredIndex === index || isButtonHovered) 
-                                ? `url('../index/Btn-${link.buttonClass}_hover.png')`
-                                : `url('../index/Btn-${link.buttonClass}.png')`,
-                            opacity: (hoveredIndex === index || isButtonHovered) ? 1 : 0.5,
-                        }}
-                    >
+                                                href="#"
+                                                className={`top-section_button_${link.buttonClass}`}
+                                                key={index}
+                                                onMouseEnter={() => setIsButtonHovered(true)}
+                                                onMouseLeave={() => setIsButtonHovered(false)}
+                                                style={{
+                                                    backgroundImage: (hoveredIndex === index || isButtonHovered)
+                                                        ? `url('./index/Btn-${link.buttonClass}_hover.png')`
+                                                        : `url('./index/Btn-${link.buttonClass}.png')`,
+                                                    opacity: (hoveredIndex === index || isButtonHovered) ? 1 : 0.5,
+                                                }}
+                                            >
                                                 <div alt={`連結至${link.label}`}></div>
                                             </a>
                                         ))}
