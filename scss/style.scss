@@ -346,6 +346,7 @@ a {
 
                 li {
                     padding: .5em 0;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: $light;
