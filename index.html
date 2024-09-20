@@ -146,8 +146,8 @@
                                                 onMouseLeave={() => setIsButtonHovered(false)}
                                                 style={{
                                                     backgroundImage: (hoveredIndex === index || isButtonHovered)
-                                                        ? `url('./index/Btn-${link.buttonClass}_hover.png')`
-                                                        : `url('./index/Btn-${link.buttonClass}.png')`,
+                                                        ? `url(./index/Btn-${link.buttonClass}_hover.png)`
+                                                        : `url(./index/Btn-${link.buttonClass}.png)`,
                                                     opacity: (hoveredIndex === index || isButtonHovered) ? 1 : 0.5,
                                                 }}
                                             >

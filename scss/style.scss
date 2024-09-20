@@ -111,8 +111,8 @@ a {
                 .top-section_house_img {
                     position: absolute;
                     bottom: 0;
-                    left: 20%;
-                    width: 78%;
+                    left: 17%;
+                    width: 81%;
                 }
             }
 
@@ -131,41 +131,37 @@ a {
             .top-section_button_container {
                 @include background;
 
-                .top-section_button_discussion {
-                    position: absolute;
-                    width: 18.7%;
-                    height: 27%;
-                    bottom: -6.8%;
-                    left: 50%;
+                a {
+                    background-size: cover;
 
                     div {
                         @include topBtnImg;
                     }
                 }
 
+                .top-section_button_discussion {
+                    position: absolute;
+                    width: 27.2%;
+                    height: 27%;
+                    bottom: -2.8%;
+                    left: 50%;
+                    scale: .7;
+                }
+
                 .top-section_button_announcement {
                     position: absolute;
-                    width: 9%;
-                    height: 16%;
-                    bottom: 0;
-                    left: 33.5%;
-
-                    div {
-                        @include topBtnImg;
-                    }
+                    width: 9.5%;
+                    height: 16.6%;
+                    bottom: 1%;
+                    left: 30%;
                 }
 
                 .top-section_button_fixed {
                     position: absolute;
                     width: 9.3%;
                     height: 19.5%;
-                    bottom: 0;
-                    left: 24%;
-
-                    div {
-                        @include topBtnImg;
-                        background-size: cover;
-                    }
+                    bottom: 1.2%;
+                    left: 19%;
                 }
 
                 .top-section_button_rally {
@@ -174,22 +170,15 @@ a {
                     height: 20%;
                     bottom: 38%;
                     left: 2%;
-
-                    div {
-                        @include topBtnImg;
-                    }
                 }
 
                 .top-section_button_download {
                     position: absolute;
-                    width: 16%;
-                    height: 37%;
-                    bottom: -6.4%;
+                    width: 20%;
+                    height: 36%;
+                    bottom: -4.6%;
                     right: 6.5%;
-
-                    div {
-                        @include topBtnImg;
-                    }
+                    scale: 0.7;
                 }
             }
         }
@@ -366,6 +355,7 @@ a {
                 .article {
                     display: grid;
                     gap: 2em;
+                    margin: 2em 0;
 
                     .marquee {
                         overflow: hidden;
