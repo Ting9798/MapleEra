@@ -67,7 +67,6 @@
         }
         function App() {
             const [hoveredIndex, setHoveredIndex] = useState(null);
-            const [isButtonHovered, setIsButtonHovered] = useState(false);
 
             const navLinks = [
                 { label: '最新消息', buttonClass: 'announcement' },
@@ -142,16 +141,16 @@
                                                 href="#"
                                                 className={`top-section_button_${link.buttonClass}`}
                                                 key={index}
-                                                onMouseEnter={() => setIsButtonHovered(true)}
-                                                onMouseLeave={() => setIsButtonHovered(false)}
+                                                onMouseEnter={() => setHoveredIndex(index)}
+                                                onMouseLeave={() => setHoveredIndex(null)}
                                                 style={{
-                                                    backgroundImage: (hoveredIndex === index || isButtonHovered)
+                                                    backgroundImage: hoveredIndex === index
                                                         ? `url(./index/Btn-${link.buttonClass}_hover.png)`
                                                         : `url(./index/Btn-${link.buttonClass}.png)`,
-                                                    opacity: (hoveredIndex === index || isButtonHovered) ? 1 : 0.5,
+                                                    opacity: hoveredIndex === index ? 1 : 0.5,
                                                 }}
                                             >
-                                                <div alt={`連結至${link.label}`}></div>
+                                                <span aria-label={`連結至${link.label}`}></span>
                                             </a>
                                         ))}
                                     </div>
@@ -230,7 +229,7 @@
                                             </div>
                                         </div>
                                         <div className="inner-img">
-                                            <figure><img src="./index/ClassArtwork_Yeti 1.svg" alt="ClassArtwork" /></figure>
+                                            <figure><img src="./index/Yeti1.png" alt="Yeti" /></figure>
                                         </div>
                                     </div>
                                 </div>
