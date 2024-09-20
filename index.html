@@ -13,15 +13,9 @@
 </head>
 
 <body>
-
-
-
-    <footer>
-        <p>&copy; 2024 MapleEra. 版權所有.</p>
-    </footer>
-
     <div id="root"></div>
     <script type="text/babel">
+        const { useEffect, useState } = React;
         function ScrollContent(props) {
             return (
                 <div role="listitem" className="home-scroll_text-item">
@@ -72,40 +66,62 @@
             )
         }
         function App() {
-            document.querySelectorAll(".home-scroll_section").forEach((section) => {
-                let childTriggers = section.querySelectorAll(".home-scroll_text-item");
-                // switch active class
-                function makeItemActive(index) {
-                    childTriggers.forEach(trigger => trigger.classList.remove("is-active"));
+            const [hoveredIndex, setHoveredIndex] = useState(null);
+            const [isButtonHovered, setIsButtonHovered] = useState(false);
 
-                    childTriggers[index].classList.add("is-active");
-                }
-                makeItemActive(0);
+            const navLinks = [
+                { label: '最新消息', buttonClass: 'announcement' },
+                { label: '各種討論', buttonClass: 'discussion' },
+                { label: '活動揪團', buttonClass: 'rally' },
+                { label: '錯誤回報', buttonClass: 'fixed' },
+                { label: '下載遊戲', buttonClass: 'download' },
+            ];
+            useEffect(() => {
+                const sections = document.querySelectorAll(".home-scroll_section");
 
-                // create triggers
-                childTriggers.forEach((trigger, index) => {
-                    ScrollTrigger.create({
-                        trigger: trigger,
-                        start: "top center",
-                        end: "bottom center",
-                        onToggle: ({ isActive }) => {
-                            if (isActive) {
-                                makeItemActive(index);
+                sections.forEach((section) => {
+                    const childTriggers = section.querySelectorAll(".home-scroll_text-item");
+
+                    function makeItemActive(index) {
+                        childTriggers.forEach(trigger => trigger.classList.remove("is-active"));
+                        childTriggers[index].classList.add("is-active");
+                    }
+
+                    makeItemActive(0);
+
+                    childTriggers.forEach((trigger, index) => {
+                        ScrollTrigger.create({
+                            trigger: trigger,
+                            start: "top center",
+                            end: "bottom center",
+                            onToggle: ({ isActive }) => {
+                                if (isActive) {
+                                    makeItemActive(index);
+                                }
                             }
-                        }
+                        });
                     });
                 });
-            });
+
+                // Cleanup function to kill ScrollTriggers
+                return () => {
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                };
+            }, []);
             return (
                 <>
                     <header>
                         <nav className="navbar">
                             <ul className="nav-links" id="nav-links">
-                                <li><a href="#">最新消息</a></li>
-                                <li><a href="#">各種討論</a></li>
-                                <li><a href="#">活動揪團</a></li>
-                                <li><a href="#">錯誤回報</a></li>
-                                <li><a href="#">下載遊戲</a></li>
+                                {navLinks.map((link, index) => (
+                                    <li
+                                        key={index}
+                                        onMouseEnter={() => setHoveredIndex(index)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                    >
+                                        <a href="#">{link.label}</a>
+                                    </li>
+                                ))}
                             </ul>
                         </nav>
                     </header >
@@ -123,21 +139,23 @@
                                     <Background bgImgClass="tile" bgsrc="aboutBg-tile" />
 
                                     <div className="top-section_button_container">
-                                        <a href="#" className="top-section_button_discussion">
-                                            <div alt="連結至各種討論"></div>
-                                        </a>
-                                        <a href="#" className="top-section_button_announcement">
-                                            <div alt="連結至公告訊息"></div>
-                                        </a>
-                                        <a href="#" className="top-section_button_fixed">
-                                            <div alt="連結至錯誤回報"></div>
-                                        </a>
-                                        <a href="#" className="top-section_button_rally">
-                                            <div alt="連結至活動揪團"></div>
-                                        </a>
-                                        <a href="#" className="top-section_button_download">
-                                            <div alt="連結至活動揪團"></div>
-                                        </a>
+                                        {navLinks.map((link, index) => (
+                                            <a
+                        href="#"
+                        className={`top-section_button_${link.buttonClass}`}
+                        key={index}
+                        onMouseEnter={() => setIsButtonHovered(true)} // 悬停按钮时
+                        onMouseLeave={() => setIsButtonHovered(false)} // 离开按钮时
+                        style={{
+                            backgroundImage: (hoveredIndex === index || isButtonHovered) 
+                                ? `url('../index/Btn-${link.buttonClass}_hover.png')`
+                                : `url('../index/Btn-${link.buttonClass}.png')`,
+                            opacity: (hoveredIndex === index || isButtonHovered) ? 1 : 0.5,
+                        }}
+                    >
+                                                <div alt={`連結至${link.label}`}></div>
+                                            </a>
+                                        ))}
                                     </div>
                                 </div>
 
@@ -219,8 +237,8 @@
                                     </div>
                                 </div>
                             </section>
-                        </div>
-                    </main>
+                        </div >
+                    </main >
 
                     <footer>
                         <p>&copy; 2024 MapleEra. 版權所有.</p>

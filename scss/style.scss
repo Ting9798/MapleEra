@@ -133,86 +133,62 @@ a {
 
                 .top-section_button_discussion {
                     position: absolute;
-                    width: 17%;
+                    width: 18.7%;
                     height: 27%;
                     bottom: -6.8%;
                     left: 50%;
 
                     div {
                         @include topBtnImg;
-                        background-image: url('../index/Btn-discussion.png');
-
-                        &:hover {
-                            background-image: url('../index/Btn-discussion_hover.png');
-                        }
                     }
                 }
 
                 .top-section_button_announcement {
                     position: absolute;
-                    width: 8%;
-                    height: 21%;
-                    bottom: -6.5%;
+                    width: 9%;
+                    height: 16%;
+                    bottom: 0;
                     left: 33.5%;
 
                     div {
                         @include topBtnImg;
-                        background-image: url('../index/Btn-announcement.png');
-
-                        &:hover {
-                            background-image: url('../index/Btn-announcement_hover.png');
-                        }
                     }
                 }
 
                 .top-section_button_fixed {
                     position: absolute;
-                    width: 8%;
-                    height: 25%;
-                    bottom: -5.5%;
+                    width: 9.3%;
+                    height: 19.5%;
+                    bottom: 0;
                     left: 24%;
 
                     div {
                         @include topBtnImg;
-                        background-image: url('../index/Btn-fixed.png');
-
-                        &:hover {
-                            background-image: url('../index/Btn-fixed_hover.png');
-                        }
+                        background-size: cover;
                     }
                 }
 
                 .top-section_button_rally {
                     position: absolute;
-                    width: 17%;
+                    width: 18%;
                     height: 20%;
                     bottom: 38%;
                     left: 2%;
 
                     div {
                         @include topBtnImg;
-                        background-image: url('../index/Btn-rally.png');
-
-                        &:hover {
-                            background-image: url('../index/Btn-rally_hover.png');
-                        }
                     }
                 }
 
                 .top-section_button_download {
                     position: absolute;
-                    width: 9%;
-                    height: 25%;
+                    width: 16%;
+                    height: 37%;
                     bottom: -6.4%;
                     right: 6.5%;
 
                     div {
                         @include topBtnImg;
-                        background-image: url('../index/Btn-download.png');
-
-                        &:hover {
-                            background-image: url('../index/Btn-download_hover.png');
-                        }
                     }
                 }
             }
